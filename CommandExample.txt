@@ -1,1 +1,2 @@
 docker run --rm -it --name my_app <image_id>
+docker start -i <container_name | container_id>
