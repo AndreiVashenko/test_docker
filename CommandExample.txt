@@ -1,2 +1,8 @@
 docker run --rm -it --name my_app <image_id>
 docker start -i <container_name | container_id>
+
+docker run -v D:\Андрей\Python\Example\test_docker\temp:/temp --rm -it --name my_app myimage:v1
+
+docker run -v C:\temp_os\os.txt:/temp --rm -it --name my_app myimage:v1
+
+docker build . -t myimage:v1
