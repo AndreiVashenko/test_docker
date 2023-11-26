@@ -13,4 +13,5 @@ if __name__ == '__main__':
     print(path_new_dir1.exists())
     print(path_new_dir2.exists())
 
+
     ss = input("enter any word")
