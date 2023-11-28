@@ -1,8 +1,18 @@
+#Создание образа
+docker build . -t myimage:v1
+
+#Создание образа с последующим запуском контейнера
 docker run --rm -it --name my_app <image_id>
+
+#Запуск созданного контейнера
 docker start -i <container_name | container_id>
 
-docker run -v D:\Андрей\Python\Example\test_docker\temp:/temp --rm -it --name my_app myimage:v1
+#Создание образа с последующим запуском контейнера.
+    #Монтирование папки хоста к тому в контейнере
+    #Физически файлы хронятся только в папке хоста
+    #Том - это лишь ссылка
+    docker run -v C:\temp_os:/temp1 --rm -it --name my_app my_app:v1
+    docker run --mount type=bind,source=C:\temp_os,destination=/temp2,ro --rm -it --name my_app my_app:v1
 
-docker run -v C:\temp_os\os.txt:/temp --rm -it --name my_app myimage:v1
-
-docker build . -t myimage:v1
+    #Создание тома в контейнере с привязкой папки хоста
+    docker run --mount type=volume,source=temp1,target=/app/temp11 --rm -it --name my_app my_app:v1
