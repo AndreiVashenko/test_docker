@@ -10,9 +10,15 @@ docker start -i <container_name | container_id>
 #Создание образа с последующим запуском контейнера.
     #Монтирование папки хоста к тому в контейнере
     #Физически файлы хронятся только в папке хоста
-    #Том - это лишь ссылка
-    docker run -v C:\temp_os:/temp1 --rm -it --name my_app my_app:v1
-    docker run --mount type=bind,source=C:\temp_os,destination=/temp2,ro --rm -it --name my_app my_app:v1
+    #Том - это лишь ссылка, и содержимое в самом контейнере удаляется, раз
+    #мы сказали что физически все данные на хосте
+    docker run -v C:\temp_os:/app/temp1/temp11 --rm -it --name my_app my_app:v1
+    docker run --mount type=bind,source=C:\temp_os,destination=/app/temp1/temp11,ro --rm -it --name my_app my_app:v1
 
-    #Создание тома в контейнере с привязкой папки хоста
-    docker run --mount type=volume,source=temp1,target=/app/temp11 --rm -it --name my_app my_app:v1
+    #Монтирование volume докера к тому в контейнере
+    #Фактически, обращаясь из контейнера к нашей папке /app/temp1/temp11
+    #мы работаем с данными с папкой my_volume докера, докер нас перенаправляет
+    docker run --mount type=volume,source=my_volume,target=/app/temp1/temp11 --rm -it --name my_app my_app:v1
+        #Фактически, обращаясь из контейнера к нашей папке /app/temp1/temp11
+        #мы работаем с папкой my_volume в специальном пространстве докера,
+        #докер нас перенаправляет

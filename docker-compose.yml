@@ -5,4 +5,7 @@ services:
     container_name: my_app
     build: ./
     volumes:
-      - C:\temp_os:/temp
+      - myappVol:/app/temp1
+
+volumes:
+  myappVol:
