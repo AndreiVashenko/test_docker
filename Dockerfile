@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-#VOLUME C:\temp_os:/temp1
+VOLUME myVol1
 
 CMD ["python", "main.py"]
